@@ -79,6 +79,8 @@ for (const key in marathons) {
 
 // Create event listeners
 form.addEventListener("submit", formSubmission);
+let inputs = [pace, factor, currentAltitude, marathon];
+inputs.forEach(input => input.addEventListener("change", hideResults));
 
 function convertToTime(totalSeconds) {
   let hoursRemainder = totalSeconds % secsInHour;
@@ -158,11 +160,16 @@ function populateTable(referencePace, factorValue, kms) {
 }
 
 function calculateWinByAltitudeDifference(altitudeValue, winByAltitudeFactor) {
-  return 1 - (1 - 11.7 * (altitudeValue * Math.pow(10, -3) - winByAltitudeFactor) - 1.1219 * Math.pow(altitudeValue * Math.pow(10, -3) - winByAltitudeFactor, 2)) * Math.pow(10, -2);
+  return 1 - (1 - 11.7 * Math.pow(10, -3) * Math.pow((altitudeValue * Math.pow(10, -3) - winByAltitudeFactor), 2) - 4.01 * Math.pow(10, -3) * (altitudeValue * Math.pow(10, -3) - winByAltitudeFactor));
 }
 
 function calculateReferencePace(threshold, ref, winByAltitudeDifference, lossByTemperature, lossByWind) {
   return threshold * (2 - ref) * (1 - winByAltitudeDifference) * (1 + lossByTemperature) * (1 + lossByWind);
+}
+
+function hideResults() {
+  results.classList.add("hidden");
+  console.log("hide");
 }
 
 function formSubmission(e) {
