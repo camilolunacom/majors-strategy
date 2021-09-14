@@ -145,7 +145,11 @@ function populateTable(referencePace, factorValue, kms) {
     } else {
       value = referencePace * (1 - factorValue) * (1 + factor);
     }
-    total += value;
+    if (km === 43) {
+      total += value * 0.2;
+    } else {
+      total += value;
+    }
 
     row.querySelector(".km__pace").textContent = convertToTime(value);
     row.querySelector(".km__time").textContent = convertToTime(total);
