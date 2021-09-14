@@ -158,7 +158,7 @@ function populateTable(referencePace, factorValue, kms) {
 }
 
 function calculateWinByAltitudeDifference(altitudeValue, winByAltitudeFactor) {
-  return 1 - (99.921 - 1.8991 * (altitudeValue * Math.pow(10, -3) - winByAltitudeFactor) - 1.1219 * Math.pow(altitudeValue * Math.pow(10, -3) - winByAltitudeFactor, 2)) * Math.pow(10, -2);
+  return 1 - (1 - 11.7 * (altitudeValue * Math.pow(10, -3) - winByAltitudeFactor) - 1.1219 * Math.pow(altitudeValue * Math.pow(10, -3) - winByAltitudeFactor, 2)) * Math.pow(10, -2);
 }
 
 function calculateReferencePace(threshold, ref, winByAltitudeDifference, lossByTemperature, lossByWind) {
