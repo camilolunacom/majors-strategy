@@ -1,0 +1,154 @@
+@import 'normalize';
+
+// General
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.563em;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetiva, Arial, sans-serif;
+  color: #333;
+}
+
+header, footer, .subtitle {
+  text-align: center;
+}
+
+footer {
+  font-size: 0.9em;
+  margin-bottom: 2em;
+}
+
+.container {
+  max-width: 600px;
+  margin: 3em auto 1.5em;
+  padding: 1em 2em 2em;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 10px 10px 20px #ccc;
+}
+
+a, a:visited {
+  color: #111;
+  text-decoration: underline;
+  transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #666;
+  text-decoration-color: #eee;
+}
+
+input, select, button {
+  appearance: none;
+  margin: 0.25em auto 0;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  display: block;
+  text-align: inherit;
+  appearance: none;
+  border: 1px solid #999;
+  border-radius: 0.5em;
+  width: 220px;
+  font-size: 1.1em;
+  font-weight: 300;
+  color: #666;
+
+  &:invalid {
+    color: #aaa;
+    font-weight: 100;
+
+    option:not(:first-of-type) {
+      color: #666;
+      font-weight: 300;
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button {
+  margin-top: 1em;
+  border: 1px solid #333;
+  border-radius: 0.5em;
+  color: #eee;
+  background: #333;
+  text-align: center;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #333;
+    background: #eee;
+  }
+}
+
+.alzr-emoji {
+  display: inline !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 1em !important;
+  width: 1em !important;
+  margin: 0 .07em !important;
+  vertical-align: -0.1em !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.title {
+  font-size: 2em;
+  line-height: 1.3333em;
+}
+
+.subtitle {
+  font-size: 1.625em;
+  line-height: 1.345em;
+}
+
+.form {
+  text-align: center;
+
+  &__row {
+    margin-bottom: 0.5em;
+  }
+}
+
+.data {
+  padding-left: 0;
+  list-style: none;
+  text-align: center;
+}
+
+table {
+  margin: auto;
+
+  td {
+    padding: 0.25em 1em;
+  }
+}
+
+.km {
+  &__number {
+    text-align: center;
+  }
+}
