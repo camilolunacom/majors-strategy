@@ -140,7 +140,7 @@ function populateTable(referencePace, factorValue, kms, split) {
   for (let row of tableRows) {
     let km = parseInt(row.dataset.km);
     let factor = kms[km] ? parseFloat(kms[km][0]) : 0;
-    let color;
+    let color = "";
     let value = 0;
     if (km < split) {
       value = referencePace * (1 + factorValue) * (1 + factor);
@@ -152,14 +152,15 @@ function populateTable(referencePace, factorValue, kms, split) {
     if (km > 35) {
       color = "lightgreen";
     }
-    kms[km] ? color = kms[km][1] : false;
+    if (kms[km]) color = kms[km][1];
     if (km === 43) {
       total += value * 0.2;
     } else {
       total += value;
     }
-    
-    row.classList.add(color);
+    console.log(color);
+    row.classList.remove(...row.classList);
+    row.classList.add("km", color);
     row.querySelector(".km__pace").textContent = convertToTime(value);
     row.querySelector(".km__time").textContent = convertToTime(total);
   }
