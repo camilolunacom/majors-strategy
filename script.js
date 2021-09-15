@@ -83,12 +83,11 @@ let inputs = [pace, factor, currentAltitude, marathon];
 inputs.forEach(input => input.addEventListener("change", hideResults));
 
 function convertToTime(totalSeconds) {
-  let hoursRemainder = totalSeconds % secsInHour;
-  let hours = (totalSeconds - hoursRemainder) / secsInHour;
-  let minRemainer = hoursRemainder % secsInMin;
-  let minutes = (hoursRemainder - minRemainer) / secsInMin;
+  let hoursRemainder = Math.round(totalSeconds) % secsInHour;
+  let hours = Math.round((totalSeconds - hoursRemainder) / secsInHour);
+  let minRemainer = Math.round(hoursRemainder % secsInMin);
+  let minutes = Math.round((hoursRemainder - minRemainer) / secsInMin);
   let seconds = Math.round(minRemainer);
-  // return `${hours}:${minutes}:${seconds}`;
   return `${hours}:${("0" + minutes.toString()).slice(-2)}:${("0" + seconds.toString()).slice(-2)}`;
 }
 
@@ -136,23 +135,31 @@ function calculateReferencePercentage(threshold) {
   }
 }
 
-function populateTable(referencePace, factorValue, kms) {
+function populateTable(referencePace, factorValue, kms, split) {
   let total = 0;
   for (let row of tableRows) {
     let km = parseInt(row.dataset.km);
-    let factor = kms[km] ? parseFloat(kms[km]) : 0;
+    let factor = kms[km] ? parseFloat(kms[km][0]) : 0;
+    let color;
     let value = 0;
-    if (km < 22) {
+    if (km < split) {
       value = referencePace * (1 + factorValue) * (1 + factor);
+      color = "blue";
     } else {
       value = referencePace * (1 - factorValue) * (1 + factor);
+      color = "green";
     }
+    if (km > 35) {
+      color = "lightgreen";
+    }
+    kms[km] ? color = kms[km][1] : false;
     if (km === 43) {
       total += value * 0.2;
     } else {
       total += value;
     }
-
+    
+    row.classList.add(color);
     row.querySelector(".km__pace").textContent = convertToTime(value);
     row.querySelector(".km__time").textContent = convertToTime(total);
   }
@@ -169,7 +176,6 @@ function calculateReferencePace(threshold, ref, winByAltitudeDifference, lossByT
 
 function hideResults() {
   results.classList.add("hidden");
-  console.log("hide");
 }
 
 function formSubmission(e) {
@@ -184,12 +190,13 @@ function formSubmission(e) {
   let lossByTemperature = parseFloat(marathonData.lossByTemperature);
   let lossByWind = parseFloat(marathonData.lossByWind);
   let kms = marathonData.kms;
+  let split = marathonData.split ? marathonData.split : 22;
 
   let refValue = calculateReferencePercentage(thresholdValue);
   let winByAltitudeDifference = calculateWinByAltitudeDifference(altitudeValue, winByAltitudeFactor);
   let referencePace = calculateReferencePace(thresholdValue, refValue, winByAltitudeDifference, lossByTemperature, lossByWind);
 
-  let total = populateTable(referencePace, factorValue, kms);
+  let total = populateTable(referencePace, factorValue, kms, split);
 
   threshold.textContent = convertToTime(thresholdValue);
   reference.textContent = `${refValue * 100}%`;
