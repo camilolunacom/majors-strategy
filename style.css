@@ -492,13 +492,55 @@ button:hover {
 
 table {
   margin: auto;
+  border-collapse: collapse;
+  color: #000;
+  text-align: center;
+}
+
+table thead {
+  color: #fff;
+  background: #333;
+}
+
+table tr {
+  border: 1px solid #333;
+  border-left: 0;
+  border-right: 0;
 }
 
 table td {
   padding: 0.25em 1em;
 }
 
-.km__number {
-  text-align: center;
+.km.blue {
+  background: rgba(32, 171, 203, 0.5);
+}
+
+.km.lightgreen {
+  background: rgba(226, 239, 217, 0.5);
+}
+
+.km.green {
+  background: rgba(146, 208, 80, 0.5);
+}
+
+.km.orange {
+  background: rgba(255, 192, 0, 0.5);
+}
+
+.km.yellow {
+  background: rgba(255, 217, 101, 0.5);
+}
+
+.km.red {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.km.mutedgreen {
+  background: rgba(168, 208, 141, 0.5);
+}
+
+.km.lightblue {
+  background: rgba(153, 223, 239, 0.5);
 }
 /*# sourceMappingURL=style.css.map */

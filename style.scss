@@ -141,6 +141,20 @@ button {
 
 table {
   margin: auto;
+  border-collapse: collapse;
+  color: #000;
+  text-align: center;
+
+  thead {
+    color: #fff;
+    background: #333;
+  }
+
+  tr {
+    border: 1px solid #333;
+    border-left: 0;
+    border-right: 0;
+  }
 
   td {
     padding: 0.25em 1em;
@@ -148,7 +162,36 @@ table {
 }
 
 .km {
-  &__number {
-    text-align: center;
+  &.blue {
+    background: rgba(32, 171, 203, .5);
+  }
+
+  &.lightgreen {
+    background: rgba(226, 239, 217, .5);
+  }
+
+  &.green {
+    background: rgba(146, 208, 80, .5);
+  }
+  
+  &.orange {
+    background: rgba(255, 192, 0, .5);
+  }
+  
+  &.yellow {
+    background: rgba(255, 217, 101, .5);
+  }
+  
+  &.red {
+    background: rgba(255, 0, 0, .5);
+  }
+  
+  &.mutedgreen {
+    background: rgba(168, 208, 141, .5);
+  }
+  
+  &.lightblue {
+    background: rgba(153, 223, 239, .5);
   }
 }
+  
